@@ -7,11 +7,9 @@ class Spork::TestFramework::RSpec < Spork::TestFramework
       ::Spec::Runner::CommandLine.run(
         ::Spec::Runner::OptionParser.parse(argv, stderr, stdout)
       )
-    elsif rspec3?
+    else
       options = ::RSpec::Core::ConfigurationOptions.new(argv)
       ::RSpec::Core::Runner.new(options).run(stderr, stdout)
-    else
-      ::RSpec::Core::CommandLine.new(argv).run(stderr, stdout)
     end
   end
 
