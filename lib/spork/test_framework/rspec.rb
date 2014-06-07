@@ -3,14 +3,8 @@ class Spork::TestFramework::RSpec < Spork::TestFramework
   HELPER_FILE = File.join(Dir.pwd, "spec/spec_helper.rb")
 
   def run_tests(argv, stderr, stdout)
-    if rspec1?
-      ::Spec::Runner::CommandLine.run(
-        ::Spec::Runner::OptionParser.parse(argv, stderr, stdout)
-      )
-    else
-      options = ::RSpec::Core::ConfigurationOptions.new(argv)
-      ::RSpec::Core::Runner.new(options).run(stderr, stdout)
-    end
+    options = ::RSpec::Core::ConfigurationOptions.new(argv)
+    ::RSpec::Core::Runner.new(options).run(stderr, stdout)
   end
 
   def rspec3?
